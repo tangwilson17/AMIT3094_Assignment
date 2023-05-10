@@ -6,9 +6,9 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 justify-center align-center mt-5">
+                <div class="col-lg-12 justify-center align-center" style="margin-top:20%">
                     <h3>Log in to enter</h3>
-                    <form class="row login_form" action="LoginCustomerController" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="row login_form" action="../LoginCustomerController" method="post" id="contactForm" novalidate="novalidate">
                         <div class="col-md-12 form-group">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
                         </div>
@@ -20,6 +20,7 @@
                         <div class="col-md-12 form-group">
                             <button type="submit" value="submit" class="primary-btn">Log In</button>
                         </div>
+                        <a href="register.jsp">Register</a>
                     </form>
                 </div>
             </div>
