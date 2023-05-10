@@ -41,7 +41,7 @@ public class DisplayProduct extends HttpServlet {
             ProductModel prod = new ProductModel(em);
             List<Product> prodList = prod.findAll();
             session.setAttribute("prodList", prodList);
-            response.sendRedirect("Display.jsp");
+            response.sendRedirect("customer/shop.jsp");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

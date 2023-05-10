@@ -42,7 +42,7 @@ public class ProductDetails extends HttpServlet {
             Category category = catModel.getCategoryByID(categoryID);
             session.setAttribute("category", category);
 
-            response.sendRedirect("ShowProdDetails.jsp");
+            response.sendRedirect("customer/product-details.jsp");
 
         } catch (Exception ex) {
             ex.printStackTrace();
