@@ -3,7 +3,58 @@
     <%@ include file = "header.jsp" %>
     <body>
 
+<header id="header">
+		<div class="container">
+			<div class="row">
 
+				<div class="col-md-2">
+					<div class="main-logo">
+						<a href="index.jsp"><img src="images/main-logo.png" alt="logo"></a>
+					</div>
+
+				</div>
+
+				<div class="col-md-10">
+					
+					<nav id="navbar">
+						<div class="main-menu stellarnav">
+							<ul class="menu-list">
+								<li class="menu-item active"><a href="index.jsp" data-effect="Home">Home</a></li>
+								<li class="menu-item"><a href="about.jsp" class="nav-link" data-effect="About">About</a></li>
+								
+                                                         
+								<li class="menu-item"><a href="../DisplayProduct" class="nav-link" data-effect="Shop">Shop</a></li>
+								<li class="menu-item"><a href="contact.jsp" class="nav-link" data-effect="Contact">Contact</a></li>
+                                                                       <li class="menu-item has-sub">
+									<a href="#pages" class="nav-link" data-effect="Pages">Pages</a>
+
+									<ul>
+								        <li class="active"><a href="index.jsp">Home</a></li>
+								        <li><a href="about.jsp">About</a></li>
+								        <li><a href="styles.jsp">Styles</a></li>
+								        <li><a href="shop.jsp">Our Store</a></li>
+								        <li><a href="single-product.jsp">Product Single</a></li>
+								        <li><a href="contact.jsp">Contact</a></li>
+								     </ul>
+
+								</li>
+							</ul>
+
+							<div class="hamburger">
+				                <span class="bar"></span>
+				                <span class="bar"></span>
+				                <span class="bar"></span>
+				            </div>
+
+						</div>
+					</nav>
+
+				</div>
+
+			</div>
+		</div>
+	</header>
+	
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 justify-center align-center" style="margin-top:20%">
