@@ -62,11 +62,11 @@ public class LoginCustomerController extends HttpServlet {
             try {
                 Customer customer = (Customer) query.getSingleResult();
                 session.setAttribute("customer", customer);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("customer/index.jsp");
             } catch (NoResultException e) {
                 session.setAttribute("status", "loginError");
                 
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("customer/login.jsp");
             }
         } catch (Exception e) {
             // Something went wrong page here

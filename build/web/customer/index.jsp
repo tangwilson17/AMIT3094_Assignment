@@ -31,7 +31,7 @@
                                     <h2 class="banner-title"><%= product.getProductname() %></h2>
                                     <p><%= product.getDescription() %></p>
                                     <div class="btn-wrap">
-                                        <a href="../ProductDetails?prodID=<%= product.getProductid()%>&catID=<%= product.getCategorycode().getCategoryid()%> class="btn btn-outline-accent btn-accent-arrow">Read More<i class="icon icon-ns-arrow-right"></i></a>
+                                        <a href="../ProductDetails?prodID=<%= product.getProductid()%>&catID=<%= product.getCategorycode().getCategoryid()%>" class="btn btn-outline-accent btn-accent-arrow">Read More<i class="icon icon-ns-arrow-right"></i></a>
                                     </div>
                                 </div><!--banner-content--> 
                                 <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(product.getImage()))%>" alt="banner" class="banner-image">
@@ -90,10 +90,9 @@
                             %>
                                 <div class="col-md-3">
                                     <figure class="product-style">
-                                        <img src="<%= new String(Base64.getEncoder().encode(product.getImage()))%>" alt="Books" class="product-item">
-                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+                                        <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(product.getImage()))%>" alt="Books" class="product-item">
                                         <figcaption>
-                                            <h3><%= product.getProductname() %></h3>
+                                            <h3><a href="../ProductDetails?prodID=<%= product.getProductid()%>&catID=<%= product.getCategorycode().getCategoryid()%>"><%= product.getProductname() %></a></h3>
                                             <p><%= product.getCategorycode().getCategoryid() %></p>
                                             <div class="item-price">RM <%= product.getPrice() %></div>
                                         </figcaption>

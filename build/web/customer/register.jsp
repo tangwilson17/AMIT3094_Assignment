@@ -39,7 +39,7 @@
 				<div class="col-lg-12">
 					<div class="login_form_inner">
 						<h3>Register account</h3>
-						<form class="row login_form" action="RegistrationCustomerController" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="../RegistrationCustomerController" method="post" id="contactForm">
 							<div class="col-md-12 form-group">
                                                             <input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>

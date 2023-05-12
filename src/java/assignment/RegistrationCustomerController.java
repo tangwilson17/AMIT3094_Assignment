@@ -47,41 +47,41 @@ public class RegistrationCustomerController extends HttpServlet {
         
         if (name == null || name.equals("")) {
             session.setAttribute("status", "EmptyName");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/registration.jsp");
             return;
         }
         
         if (email == null || email.equals("")) {
             session.setAttribute("status", "EmptyEmail");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         if (phoneNo == null || phoneNo.equals("")) {
             session.setAttribute("status", "EmptyPhoneNo");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         if (password == null || password.equals("")) {
             session.setAttribute("status", "EmptyPass");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         if (cpassword == null || cpassword.equals("")) {
             session.setAttribute("status", "EmptyConfirmPass");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         
         if (customerService.checkIfEmailExists(email)) {
             session.setAttribute("status", "invalidEmail");
             System.out.print(email);
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         
         if (!password.equals(cpassword)){
             session.setAttribute("status", "invalidConfirmPassword");
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/register.jsp");
             return;
         }
         
@@ -100,7 +100,7 @@ public class RegistrationCustomerController extends HttpServlet {
             } else {
                 session.setAttribute("status", "failure");
             }
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("customer/login.jsp");
             
             
         }catch(Exception ex){

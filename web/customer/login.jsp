@@ -78,8 +78,21 @@
         </div>
 
         <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="js/plugins.js"></script>
         <script src="js/script.js"></script>
 
     </body>
+            <script type="text/javascript">
+            var status = document.getElementById("status").value;            
+            if(status === "loginError"){              
+                swal.fire("Sorry", "Incorrect email or password", "error");               
+            }
+            if(status === "EmptyEmail"){              
+                swal.fire("Sorry", "Please Enter Email", "error");               
+            }
+            if(status === "EmptyPass"){              
+                swal.fire("Sorry", "Please Enter Password", "error");               
+            }
+        </script>
 </html>	

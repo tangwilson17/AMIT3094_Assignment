@@ -34,7 +34,7 @@ public class LogoutCustomerController extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("orderInfo");
         session.removeAttribute("customer");
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("customer/login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
