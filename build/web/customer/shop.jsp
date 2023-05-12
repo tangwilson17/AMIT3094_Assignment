@@ -43,7 +43,15 @@
                         <% for (Product prod : prodList) {%>
                         <figure class="product-style">
                             <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(prod.getImage()))%>" alt="Books" class="product-item">
-                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+                            <button type="button" class="ti-shopping-cart" data-product-tile="add-to-cart">Add to Cart</button>
+                            
+                            <!--new add to cart-->
+                            <span class="ti-shopping-cart"></span><a href="CartServlet?id=1&amp;action=addtocart" class="social-info">
+                                                <span class="ti-shopping-cart"></span>
+                                                <p class="hover-text">Add Cart</p>
+                                            </a>
+                            
+                            
                             <figcaption>
                                 <a href="../ProductDetails?prodID=<%= prod.getProductid()%>&catID=<%= prod.getCategorycode().getCategoryid()%>"><%= prod.getProductname()%></a>
                                 <p>Adam Silber</p>
