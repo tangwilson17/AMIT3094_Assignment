@@ -41,11 +41,17 @@
                         <div class="products-grid grid">
                             <% for (Product prod : prodList) {%>
                             <figure class="product-style">
-                                <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(prod.getImage()))%>" alt="Books" class="product-item">
-                                <a class="primary-btn" href="../CartServlet?id=<%= prod.getProductid()%>&action=addtocart">Add to Cart</a>
+                                <a href="../ProductDetails?prodID=<%= prod.getProductid()%>&catID=<%= prod.getCategorycode().getCategoryid()%>">
+                                <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(prod.getImage()))%>" alt="Books" class="product-item"></a>
+
+                                <!--new button-->
+                                <a href="../CartServlet?id=<%= prod.getProductid()%>&action=addtocart"  style="display: flex; justify-content: center;"><button type="submit" name="add-to-cart" value="27545" class="button" >Add to cart</button>
+                                </a>
+
+
+
                                 <figcaption>
                                     <a href="../ProductDetails?prodID=<%= prod.getProductid()%>&catID=<%= prod.getCategorycode().getCategoryid()%>"><%= prod.getProductname()%></a>
-                                    <p>Adam Silber</p>
                                     <div class="item-price">RM<%= String.format("%.2f", prod.getPrice())%></div>
                                 </figcaption>
                             </figure>

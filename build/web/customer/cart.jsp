@@ -325,20 +325,28 @@
                                     <tr class="out_button_area">
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
-                                                <a class="gray_btn" href="../DisplayProduct">Continue Shop</a>
-                                                <a class="primary-btn" href="javascript:void(0);" onclick="event.preventDefault();
-                                                        Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            icon: 'info',
-                                                            showCancelButton: true,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Yes, proceed to checkout'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                window.location.href = '../CartServlet?action=checkout';
-                                                            }
-                                                        })">Proceed checkout</a>                                        
+                                                <a class="gray_btn" href="../DisplayProduct">
+                                                    <button type="submit">
+                                                        <i>Continue Shop</i>
+                                                    </button></a>
+
+
+                                                <a class="gray_btn" href="javascript:void(0);" onclick="event.preventDefault();
+                                                            Swal.fire({
+                                                                title: 'Are you sure?',
+                                                                icon: 'info',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Yes, proceed to checkout'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    window.location.href = '../CartServlet?action=checkout';
+                                                                }
+                                                            })"><button type="submit">
+                                                    <i>Proceed Checkout</i>
+                                                    
+                                                  </button>  </a>                                  
                                             </div>
                                         </td>
                                     </tr>

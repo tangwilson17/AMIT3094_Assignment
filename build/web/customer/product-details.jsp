@@ -34,7 +34,8 @@
 					<%= prod.getDescription().replaceAll("!", "<br>")%>
 					</p>
 
-					<button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>
+				<a href="../CartServlet?id=3&amp;action=addtocart"><button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>
+                                </a>
 					
 				</div>
 			</div>
