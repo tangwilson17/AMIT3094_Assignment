@@ -8,7 +8,6 @@
 
 <%
     List<Product> prodList = (List) session.getAttribute("prodList");
-    List<Category> category = (List) session.getAttribute("catList");
 %>
 
 
@@ -42,18 +41,8 @@
                         <div class="products-grid grid">
                             <% for (Product prod : prodList) {%>
                             <figure class="product-style">
-                                <a href="../ProductDetails?prodID=<%= prod.getProductid()%>&catID=<%= prod.getCategorycode().getCategoryid()%>">
-                                    <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(prod.getImage()))%>" alt="Books" class="product-item"></a>
-
-                                <a href="CartServlet?id=1&amp;action=addtocart" class="social-info" style="display: flex; justify-content: center;">
-                                    <button type="button" class="ti-shopping-cart" data-product-tile="add-to-cart">Add to Cart</button>
-                                </a>
-
-
-
-
-
-
+                                <img src="data:image/png;base64,<%= new String(Base64.getEncoder().encode(prod.getImage()))%>" alt="Books" class="product-item">
+                                <a class="primary-btn" href="../CartServlet?id=<%= prod.getProductid()%>&action=addtocart">Add to Cart</a>
                                 <figcaption>
                                     <a href="../ProductDetails?prodID=<%= prod.getProductid()%>&catID=<%= prod.getCategorycode().getCategoryid()%>"><%= prod.getProductname()%></a>
                                     <p>Adam Silber</p>

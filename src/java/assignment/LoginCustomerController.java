@@ -66,7 +66,7 @@ public class LoginCustomerController extends HttpServlet {
             } catch (NoResultException e) {
                 session.setAttribute("status", "loginError");
                 
-                response.sendRedirect("customer/login.jsp");
+                response.sendRedirect("login.jsp");
             }
         } catch (Exception e) {
             // Something went wrong page here

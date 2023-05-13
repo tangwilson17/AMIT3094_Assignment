@@ -53,38 +53,8 @@ public class CartServlet extends HttpServlet {
                 doGet_Cancel(request, response);
             } else if (action.equalsIgnoreCase("checkout")) {
                 doGet_CheckOut(request, response);
-            } else if (action.equalsIgnoreCase("buynow")) {
-                doGet_CheckOutBuy(request, response);
             }
         }
-    }
-
-    protected void doGet_CheckOutBuy(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        Customer cust = (Customer) session.getAttribute("customer");
-        List<Cart> cart = new ArrayList<Cart>();
-
-        if (cust == null) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ProductModel productModel = new ProductModel(em);
-            Product product = productModel.findItemByID(id);
-            cart.add(new Cart(product, 1));
-            
-            session.setAttribute("customer", cust);
-            session.setAttribute("cart", cart);
-            response.sendRedirect("beforeCheckOut.jsp");
-        } else {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ProductModel productModel = new ProductModel(em);
-            Product product = productModel.findItemByID(id);
-            cart.add(new Cart(product, 1));
-
-            session.setAttribute("cart", cart);
-            response.sendRedirect("checkout.jsp");
-        }
-
     }
 
     protected void doGet_CheckOut(HttpServletRequest request, HttpServletResponse response)
@@ -93,21 +63,11 @@ public class CartServlet extends HttpServlet {
         List<Cart> cart = (List<Cart>) session.getAttribute("cart");
         Customer cust = (Customer) session.getAttribute("customer");
 
-        if (cust == null) {
-            // if customer not yet login, redirect to checkout page with an error message
+        session.setAttribute("customer", cust);
 
-            session.setAttribute("customer", cust);
-            response.sendRedirect("beforeCheckOut.jsp");
+        session.setAttribute("cart", cart);
 
-        } else if (cart == null || cart.isEmpty()) {
-            // if cart is empty or null, redirect to checkout page with an error message
-
-            session.setAttribute("cart", cart);
-            response.sendRedirect("beforeCheckOut.jsp");
-
-        } else if (cust != null && !cart.isEmpty()) {
-            response.sendRedirect("checkout.jsp");
-        }
+        response.sendRedirect("customer/checkout.jsp");
 
     }
 
@@ -173,7 +133,7 @@ public class CartServlet extends HttpServlet {
             Orders orderInfo = orderModel.findOrderByID(orderId);
             session.setAttribute("orderInfo", orderInfo);
 
-            response.sendRedirect("confirmation.jsp?add1=" + request.getParameter("add1") + "&add2=" + request.getParameter("add2") + "&city=" + request.getParameter("city") + "&zip=" + request.getParameter("zip") + "&orderId=" + orderInfo.getOrderId());
+            response.sendRedirect("customer/thank-you.jsp");
         } catch (Exception ex) {
             Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -232,15 +192,17 @@ public class CartServlet extends HttpServlet {
                 OrdersModel orderModel = new OrdersModel(em);
                 int orderId = order.getOrderId();
                 Orders orderInfo = orderModel.findOrderByID(orderId);
+                session.setAttribute("customer", customer);
                 session.setAttribute("orderInfo", orderInfo);
 
                 // Redirect to the confirmation page
-                response.sendRedirect("confirmation.jsp?add1=" + request.getParameter("add1") + "&add2=" + request.getParameter("add2") + "&city=" + request.getParameter("city") + "&zip=" + request.getParameter("zip") + "&orderId=" + orderInfo.getOrderId());
+                response.sendRedirect("customer/thank-you.jsp");
 
             } else if (paymentMethod.equals("Card")) {
 
+                session.setAttribute("customer", customer);
                 session.setAttribute("cart", cart);
-                response.sendRedirect("CardInfo.jsp?add1=" + request.getParameter("add1") + "&add2=" + request.getParameter("add2") + "&city=" + request.getParameter("city") + "&zip=" + request.getParameter("zip") + "&amount=" + request.getParameter("amount"));
+                response.sendRedirect("customer/cardPay.jsp?add1=" + request.getParameter("add1") + "&add2=" + request.getParameter("add2") + "&city=" + request.getParameter("city") + "&zip=" + request.getParameter("zip") + "&amount=" + request.getParameter("amount"));
 
             }
         } catch (Exception ex) {
@@ -259,7 +221,7 @@ public class CartServlet extends HttpServlet {
         List<Cart> cart = (List<Cart>) session.getAttribute("cart");
         cart.get(index).setQuantity(qty);
         session.setAttribute("cart", cart);
-        response.sendRedirect("cart.jsp");
+        response.sendRedirect("customer/cart.jsp");
     }
 
     protected void doGet_Cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -268,12 +230,12 @@ public class CartServlet extends HttpServlet {
         List<Cart> cart = (List<Cart>) session.getAttribute("cart");
         cart.remove(index);
         session.setAttribute("cart", cart);
-        response.sendRedirect("cart.jsp");
+        response.sendRedirect("customer/cart.jsp");
     }
 
     protected void doGet_View(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("cart.jsp");
+        response.sendRedirect("customer/cart.jsp");
     }
 
     protected void doGet_Add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -284,7 +246,7 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("cart") == null) {
-            List<Cart> cart = new ArrayList<Cart>();
+            List<Cart> cart = new ArrayList<>();
 
             cart.add(new Cart(productModel.findItemByID(id), 1));
             session.setAttribute("cart", cart);
@@ -300,7 +262,7 @@ public class CartServlet extends HttpServlet {
             }
             session.setAttribute("cart", cart);
         }
-        response.sendRedirect("cart.jsp");
+        response.sendRedirect("customer/cart.jsp");
 
     }
 

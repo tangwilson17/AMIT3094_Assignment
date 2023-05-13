@@ -35,42 +35,24 @@ public class DisplayProfile extends HttpServlet {
 
         HttpSession session = request.getSession();
         Orders orderInfo = (Orders) session.getAttribute("orderInfo");
-        if (orderInfo == null) {
-            OrderListModel orderLM = new OrderListModel(em);
-            List<OrderList> orderL = orderLM.findAll();
-            session.setAttribute("orderList", orderL);
+        Customer cust = (Customer) session.getAttribute("customer");
 
-            OrdersModel orderM = new OrdersModel(em);
-            List<Orders> order = orderM.findAll();
-            session.setAttribute("order", order);
+        OrderListModel orderLM = new OrderListModel(em);
+        List<OrderList> orderL = orderLM.findAll();
+        session.setAttribute("orderL", orderL);
 
-            session.removeAttribute("cart");
-            response.sendRedirect("profile.jsp");
-        } else {
-            // List<OrderList> findAll then set attribute, in jsp page do for(orderList.orderid == orderIndo,id)
-            if (orderInfo.getCustomerId().getCustomerName() != null) {
-                OrderListModel orderLM = new OrderListModel(em);
-                List<OrderList> orderL = orderLM.findAll();
-                session.setAttribute("orderL", orderL);
+        OrdersModel orderM = new OrdersModel(em);
+        List<Orders> order = orderM.findAll();
+        session.setAttribute("order", order);
 
-                CustomerModel custM = new CustomerModel(em);
-                List<Customer> cust = custM.findAll();
-                session.setAttribute("cust", cust);
-
-                OrdersModel orderM = new OrdersModel(em);
-                List<Orders> order = orderM.findAll();
-                session.setAttribute("order", order);
-
-                session.setAttribute("orderInfo", orderInfo);
-                session.removeAttribute("cart");
-                response.sendRedirect("profile.jsp");
-            }
-
-        }
+        session.setAttribute("customer", cust);
+        session.setAttribute("orderInfo", orderInfo);
+        session.removeAttribute("cart");
+        response.sendRedirect("customer/account.jsp");
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
